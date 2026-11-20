@@ -42,7 +42,7 @@ Done when every changed file is either mapped to a surface or marked "no human-f
 You need **before** (the PR's merge base) and **after** (the PR head), side by side, each in its own worktree.
 Learn from the project's own docs (`AGENTS.md`, README, a dev-environment skill) how to run a checkout.
 Give each version what its footprint needs: a UI-only change may share one backend; server code, schema or API changes need a backend and a database copy per version, each on its own port.
-The user's own checkouts and primary database stay untouched.
+Leave the user's own checkouts alone, and any instance or database the project's docs or the user's preferences protect.
 
 How to reach and drive each surface kind lives in [`SURFACES.md`](SURFACES.md).
 Read the section of every kind in the footprint before you start walking.

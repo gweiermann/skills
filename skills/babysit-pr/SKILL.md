@@ -12,9 +12,11 @@ Something wakes you when the PR changes; you fix what is the branch's fault, rer
 
 ## Preferences
 
-`~/.agents/babysit/preferences.md` holds the user's standing answers: merge method, auto-merge takeover, whether you may post on GitHub, what to leave alone.
+`~/.agents/babysit/preferences.md` holds the user's standing answers: merge method, auto-merge takeover, GitHub posting, what to leave alone.
 Read it first.
 An answer given in a session holds for that session; write it to the file only when the user wants it kept.
+
+**Posting on GitHub is opt-in.** Comments, replies, reviews and resolving threads happen only when the preferences allow them or the user asks; otherwise you draft the text in your report.
 
 ## Orchestrator
 
@@ -48,7 +50,7 @@ Act only on what is newer than the latest push.
 At most two reruns per check; after that it is real or goes to the user.
 Several failures: one subagent per check, in parallel.
 
-**Review findings:** verify each against the source, fix real bugs, and for the rest draft a one-line reply with the reason.
+**Review findings:** verify each against the source, fix real bugs, and for the rest write a one-line reply with the reason.
 Keep the PR at the size its goal needs; review loops grow PRs one cheap fix at a time.
 
 **Base moved, BEHIND or conflicting:** bring the base in and resolve.

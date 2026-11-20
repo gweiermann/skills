@@ -22,7 +22,7 @@ All in `~/.agents/babysit/`:
 Without saved preferences, interview the user in one batch:
 
 - **Which PRs:** repos or orgs, own only or also assigned and review-requested, drafts, the inactivity cutoff after which a PR is left alone, anything to skip.
-- **What you may do:** bring bases in, fix CI, post on GitHub, merge (per-PR opt-in, or auto-merge takeover).
+- **What you may do:** bring bases in, fix CI, merge (per-PR opt-in, or auto-merge takeover), post on GitHub (off unless they opt in).
 - **What they never want.**
 
 Then ask: keep these for future runs, or for this session only?

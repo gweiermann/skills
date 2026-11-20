@@ -27,7 +27,7 @@ Then, cheapest first:
    Pick names and ports nobody uses; check before creating them.
 3. **Take over** a shared environment only when it is disposable and nobody is using it.
 
-The user's own checkouts and primary database stay as they are.
+Leave the user's own checkouts alone, and any instance or database the project's docs or the user's preferences protect.
 
 Go the full way, as close to a real user's setup as possible.
 A mocked input or a unit-level check is a first probe, never the proof.
