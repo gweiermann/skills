@@ -19,7 +19,7 @@ All in `~/.agents/babysit/`:
 
 ## First run
 
-Without saved preferences, interview the user in one batch:
+Without saved preferences, interview the user in plain chat, not a question tool: numbered questions, each with your recommendation, in one round:
 
 - **Which PRs:** repos or orgs, own only or also assigned and review-requested, drafts, the inactivity cutoff after which a PR is left alone, anything to skip.
 - **What you may do:** bring bases in, fix CI, merge (per-PR opt-in, or auto-merge takeover), post on GitHub (off unless they opt in).
