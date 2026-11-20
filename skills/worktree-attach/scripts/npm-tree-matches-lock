@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""Exit 0 if <node_modules> holds exactly what <package-lock.json> pins.
+
+npm records what it actually installed in node_modules/.package-lock.json, so
+comparing that with the lockfile catches a tree installed from an older lock
+that a hash of the current lockfile alone would happily accept.
+
+Lock entries marked optional may be missing (platform-specific binaries).
+
+    npm-tree-matches-lock src/.../node_modules src/.../package-lock.json
+"""
+import json
+import sys
+
+
+def packages(path):
+    with open(path) as f:
+        return {k: v for k, v in json.load(f).get("packages", {}).items() if k}
+
+
+def main(tree, lock):
+    try:
+        installed = packages(f"{tree}/.package-lock.json")
+    except (OSError, ValueError):
+        return f"no readable {tree}/.package-lock.json"
+    wanted = packages(lock)
+    for name, meta in wanted.items():
+        have = installed.get(name)
+        if have is None:
+            if not meta.get("optional"):
+                return f"{name} missing"
+        elif have.get("version") != meta.get("version"):
+            return f"{name} is {have.get('version')}, lock wants {meta.get('version')}"
+    extra = installed.keys() - wanted.keys()
+    if extra:
+        return f"{sorted(extra)[0]} not in lock (+{len(extra) - 1} more)"
+    return None
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        sys.exit(__doc__)
+    problem = main(sys.argv[1], sys.argv[2])
+    if problem:
+        print(problem, file=sys.stderr)
+        sys.exit(1)
