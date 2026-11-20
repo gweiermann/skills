@@ -7,6 +7,7 @@ They work in Claude Code, Codex and T3 Code, and adapt to whatever the harness o
 |---|---|---|
 | `babysit-pr` | "babysit" | Keeps a PR or a stack green and current; opt-in: gets it merged and outwaits breakage that is not yours. |
 | `babysit-all-prs` | "babysit all my PRs" | One long-lived session that babysits every PR you care about and routes decisions to separate sessions. |
+| `pr-review` | "review this PR" | Reviews a PR and proves every finding end to end on an environment running it; backports get a fidelity check. |
 | `shopware/shopware-commercial-companion` | (automatic) | Pairs a shopware/shopware PR with its SwagCommercial/Rufus companion. |
 
 `babysit-all-prs` uses `babysit-pr`.
