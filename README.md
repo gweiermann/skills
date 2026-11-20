@@ -1,0 +1,34 @@
+# skills
+
+Agent skills I use every day.
+They work in Claude Code, Codex and T3 Code, and adapt to whatever the harness offers.
+
+| Skill | Say | What it does |
+|---|---|---|
+| `babysit-pr` | "babysit" | Keeps a PR or a stack green and current; opt-in: gets it merged and outwaits breakage that is not yours. |
+| `babysit-all-prs` | "babysit all my PRs" | One long-lived session that babysits every PR you care about and routes decisions to separate sessions. |
+| `shopware/shopware-commercial-companion` | (automatic) | Pairs a shopware/shopware PR with its SwagCommercial/Rufus companion. |
+
+`babysit-all-prs` uses `babysit-pr`.
+Your answers to their questions live in `~/.agents/babysit/`, so you can update the skills without losing them.
+
+## Install
+
+```bash
+git clone https://github.com/gweiermann/skills ~/Documents/skills
+for s in ~/Documents/skills/skills/babysit-*; do ln -s "$s" ~/.claude/skills/; done
+ln -s ~/Documents/skills/skills/shopware/* ~/.claude/skills/   # only if you work on Shopware
+```
+
+Use `~/.codex/skills/` or `~/.agents/skills/` for other harnesses.
+
+Requirements: an authenticated [GitHub CLI](https://cli.github.com), `python3` for `pr-wait`, and [`gh stack`](https://github.com/github/gh-stack) for linked stacks.
+
+## Credits
+
+`babysit-pr` builds on [Theo Browne](https://github.com/t3dotgg)'s [`babysit-pr`](https://github.com/t3dotgg/tstack/tree/main/skills/babysit-pr) from [tstack](https://github.com/t3dotgg/tstack), including its `pr-wait` script (MIT).
+Thanks, Theo.
+
+## License
+
+[MIT](LICENSE)
