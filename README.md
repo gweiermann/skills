@@ -11,7 +11,6 @@ They work in Claude Code, Codex and T3 Code, and adapt to whatever the harness o
 | `user-review` | "user review" | Walks every surface a PR changes as the people who use it, before and after, and keeps only what the PR caused. |
 | `post-findings` | "post this finding" | Puts review findings into your pending GitHub review, short and self-contained, for you to submit. |
 | `worktree-attach` | (automatic) | Makes a fresh worktree runnable in seconds by attaching it to a running instance: copy-on-write dependencies, own dev server, shared backend. |
-| `shopware/shopware-commercial-companion` | (automatic) | Pairs a shopware/shopware PR with its SwagCommercial/Rufus companion. |
 
 `babysit-all-prs` uses `babysit-pr`.
 Your answers to their questions live in `~/.agents/babysit/`, so you can update the skills without losing them.
@@ -21,7 +20,6 @@ Your answers to their questions live in `~/.agents/babysit/`, so you can update 
 ```bash
 git clone https://github.com/gweiermann/skills ~/Documents/skills
 for s in ~/Documents/skills/skills/*/SKILL.md; do ln -s "$(dirname "$s")" ~/.claude/skills/; done
-ln -s ~/Documents/skills/skills/shopware/* ~/.claude/skills/   # only if you work on Shopware
 ```
 
 Use `~/.codex/skills/` or `~/.agents/skills/` for other harnesses.
