@@ -9,6 +9,8 @@ Name the PRs it covers; a stack counts as one unit.
 A draft cannot auto-merge: ask once whether to mark it ready.
 Use the merge method from preferences, else the one the repo allows (`gh repo view --json squashMergeAllowed,mergeCommitAllowed,rebaseMergeAllowed`).
 
+First find out whether the PR is part of a stack linked on GitHub (`gh stack view`); a linked PR refuses plain auto-merge.
+
 - **Single PR:** `gh pr merge <n> --auto --<method>`.
 - **Linked GitHub stack:** once every layer is green and approved, `gh stack merge <top>`.
 - **Plain stack:** auto-merge the bottom PR; when it lands and GitHub retargets the next one, bring the new base in, auto-merge it, walk up.

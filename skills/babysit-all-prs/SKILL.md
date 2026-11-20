@@ -30,7 +30,7 @@ Show the resulting PR list and get a yes before watching anything.
 
 ## Sweep
 
-On start and on an hourly tick: list open PRs matching the filters, sort them into active and inactive, watch the new active ones, and stop touching ones that went stale.
+On start and on a tick (as often as preferences say; hourly otherwise): list open PRs matching the filters, sort them into active and inactive, watch the new active ones, and stop touching ones that went stale.
 Activity counts only the user's and their sessions' work, never this session's own pushes.
 An inactive PR is left alone completely until the user works on it again or hands it over.
 
@@ -48,7 +48,7 @@ The author session keeps the design of its draft; you keep it green and current.
 
 ## Decisions
 
-When something needs the user (a hard conflict, an ambiguous fix, an opt-in like merging):
+When something needs the user (a hard conflict, an ambiguous fix, an opt-in like merging, any question `babysit-pr` would ask):
 
 1. The PR's owner session is alive ⇒ send it the question; it asks the user, implements the answer, and reports back to you.
 2. Otherwise start a new session titled `Decide: <PR> <topic>` with the full context, the options, your recommendation, and the instruction to get the decision, implement it, and report back to the id in `orchestrator`.

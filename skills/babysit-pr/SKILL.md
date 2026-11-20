@@ -48,9 +48,10 @@ Act only on what is newer than the latest push.
 | foreign (also red on the base, not caused by the diff) | never fix it here; report with the base run as evidence |
 
 At most two reruns per check; after that it is real or goes to the user.
-Several failures: one subagent per check, in parallel.
+Several failures: one subagent per check, in parallel, each following [`references/classify.md`](references/classify.md).
 
 **Review findings:** verify each against the source, fix real bugs, and for the rest write a one-line reply with the reason.
+A human reviewer's change request is a design conversation: hand it to the PR's author session, or to the user.
 Keep the PR at the size its goal needs; review loops grow PRs one cheap fix at a time.
 
 **Base moved, BEHIND or conflicting:** bring the base in and resolve.
