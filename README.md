@@ -19,7 +19,7 @@ Your answers to their questions live in `~/.agents/babysit/`, so you can update 
 
 ```bash
 git clone https://github.com/gweiermann/skills ~/Documents/skills
-for s in ~/Documents/skills/skills/babysit-*; do ln -s "$s" ~/.claude/skills/; done
+for s in ~/Documents/skills/skills/*/SKILL.md; do ln -s "$(dirname "$s")" ~/.claude/skills/; done
 ln -s ~/Documents/skills/skills/shopware/* ~/.claude/skills/   # only if you work on Shopware
 ```
 
