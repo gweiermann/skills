@@ -34,7 +34,22 @@ A mocked input or a unit-level check is a first probe, never the proof.
 A broken environment is yours to repair; data a journey needs gets created for real (install the extension, write the rows, create the users with the right roles).
 If something still blocks a step, name the step and why in the report.
 
-## 3. Verify, reproduce and screenshot every finding
+## 3. Prove the tests fail without the change
+
+Run every test the PR adds or changes against the base's code, with the PR's tests kept.
+Skip it when the PR touches no tests, and say so in the report.
+
+1. In the environment from step 2, put the base's version of every non-test file back: `git checkout <base> -- <files>`.
+   Leave the PR's test files, fixtures and snapshots as they are on the head.
+2. Run only those tests.
+   Each test that covers the fix or the new behaviour must fail, and fail on the assertion about that behaviour.
+   A failure from a class, import or fixture the PR adds proves nothing about the behaviour; note it, do not count it as red.
+3. Restore the head (`git checkout <head> -- .`) and run them again: they must pass.
+
+A test that passes on the base is a finding: it does not cover the change it claims to.
+Tests that pin behaviour the PR keeps unchanged (a refactor's safety net) are expected to pass on both; name them as such.
+
+## 4. Verify, reproduce and screenshot every finding
 
 Check each finding against the PR head and its base.
 Then walk it from the user's side in the running app:
@@ -51,23 +66,23 @@ Give every kept finding:
 - **Priority**: high (data loss, crash, security, broken main flow), medium (wrong behaviour in an edge path), low (polish).
 - **Relevance**: who reaches the broken path in normal use? Nitpicks that change nothing go out.
 
-## 4. Split by scope
+## 5. Split by scope
 
 The question is whether the PR caused it.
 
-- **In scope**: introduced or made worse by this PR: regressions, bugs in new code, broken compatibility, missing tests for the new behaviour, an incomplete fix of the issue the PR claims to fix.
+- **In scope**: introduced or made worse by this PR: regressions, bugs in new code, broken compatibility, missing tests for the new behaviour, tests that pass without the change, an incomplete fix of the issue the PR claims to fix.
 - **Out of scope**: already true on the base branch.
 
 Prove "pre-existing" on the base branch, not by guessing.
 
-## 5. Assess impact
+## 6. Assess impact
 
 - **Public API**: changed or removed public symbols, routes, schemas, events, config, extension points.
   Use the project's breaking-change rules where it has them.
 - **Blast radius**: who and what can be affected, and how far from the edited lines.
 - **Risk**: low / medium / high, with one sentence why.
 
-## 6. Report
+## 7. Report
 
 Layered: summaries first, details below, screenshots last.
 Run it through a de-AI-ing pass (the `humanizer` skill if installed).
@@ -113,7 +128,7 @@ Screenshots: [1-step2](<absolute path>), …
 Evidence: <code snippet> + link to file:line
 
 ## Before merge
-Missing tests, missing changelog entries, open questions for the author, what was not checked and why.
+Missing tests, tests that pass without the change (from step 3), missing changelog entries, open questions for the author, what was not checked and why.
 
 ## Out of scope
 Pre-existing issues worth a follow-up. One line each with a link.
