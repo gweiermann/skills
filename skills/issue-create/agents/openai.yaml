@@ -1,0 +1,3 @@
+display_name: Create issue
+short_description: Files an issue with your saved defaults (type, labels, project status) using the repo's issue form.
+default_prompt: File this as an issue with my defaults and hand me the URL.

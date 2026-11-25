@@ -1,0 +1,3 @@
+display_name: Create PR
+short_description: Opens a PR with your saved defaults and a tight description that follows the repo's template.
+default_prompt: Create the pull request for this branch using my defaults and hand me the URL.

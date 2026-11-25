@@ -5,6 +5,8 @@ They work in Claude Code, Codex and T3 Code, and adapt to whatever the harness o
 
 | Skill | Say | What it does |
 |---|---|---|
+| `pr-create` | "open a PR" | Opens a PR with your defaults (draft, assignee, labels per repo) and a tight description that follows the repo's template. |
+| `issue-create` | "file an issue" | Files an issue with your defaults (type, labels, project status per repo) through the repo's issue form. |
 | `babysit-pr` | "babysit" | Keeps a PR or a stack green and current; opt-in: gets it merged and outwaits breakage that is not yours. |
 | `babysit-all-prs` | "babysit all my PRs" | One long-lived session that babysits every PR you care about and routes decisions to separate sessions. |
 | `pr-review` | "review this PR" | Reviews a PR and proves every finding end to end on an environment running it; backports get a fidelity check. |
@@ -13,7 +15,8 @@ They work in Claude Code, Codex and T3 Code, and adapt to whatever the harness o
 | `worktree-attach` | (automatic) | Makes a fresh worktree runnable in seconds by attaching it to a running instance: copy-on-write dependencies, own dev server, shared backend. |
 
 `babysit-all-prs` uses `babysit-pr`.
-Your answers to their questions live in `~/.agents/babysit/`, so you can update the skills without losing them.
+The skills ask for your defaults on first use and keep the answers outside this repo, so you can update the skills without losing them:
+`~/.agents/github/preferences.md` for `pr-create` and `issue-create`, `~/.agents/babysit/` for the babysitting skills.
 
 ## Install
 
