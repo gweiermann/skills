@@ -14,7 +14,7 @@ All in `~/.agents/babysit/`:
 
 - `orchestrator`: this session's id, in whatever form the harness addresses sessions (a T3 thread id, …). Write it on start; other sessions read it to find you.
 - `preferences.md`: scope filters and standing rules, shared with `babysit-pr`.
-- `ledger.md`: per PR its state, owner session, merge mode, pending decision, and notes a fresh reader cannot get from GitHub.
+- `ledger.md`: per PR its state, owner session, merge mode, pending decision, the timestamp of the newest review activity already handled, and notes a fresh reader cannot get from GitHub.
   Read it first on every wake; update it after every action.
 
 ## First run
@@ -33,6 +33,17 @@ Show the resulting PR list and get a yes before watching anything.
 On start and on a tick (as often as preferences say; hourly otherwise): list open PRs matching the filters, sort them into active and inactive, watch the new active ones, and stop touching ones that went stale.
 Activity counts only the user's and their sessions' work, never this session's own pushes.
 An inactive PR is left alone completely until the user works on it again or hands it over.
+
+Then, for every active PR, read the human review activity newer than its mark in the ledger: reviews of every state, PR comments, and unresolved review threads, bots excluded.
+Head, checks and `reviewDecision` don't show it: a COMMENTED review, an approval short of the required count, or a new thread on an approved PR leave all three unchanged, and a watcher can miss the event.
+Route each new item the same sweep, per `babysit-pr` "Review findings", then move the PR's mark to the newest item seen.
+
+```bash
+gh api graphql -f query='{repository(owner:"<o>",name:"<r>"){pullRequest(number:<n>){
+  reviews(last:20){nodes{author{login} state submittedAt url}}
+  comments(last:20){nodes{author{login} createdAt url}}
+  reviewThreads(last:50){nodes{isResolved path line comments(last:1){nodes{author{login} createdAt body url}}}}}}}'
+```
 
 ## Work
 

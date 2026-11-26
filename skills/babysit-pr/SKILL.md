@@ -37,7 +37,7 @@ A wake with nothing to do ends silently.
 
 ## On each wake
 
-Act only on what is newer than the latest push.
+Act only on check runs newer than the latest push; a review counts until it is handled, even when a later push landed after it.
 
 | Failed check | Action |
 |---|---|
@@ -50,7 +50,8 @@ Act only on what is newer than the latest push.
 At most two reruns per check; after that it is real or goes to the user.
 Several failures: one subagent per check, in parallel, each following [`references/classify.md`](references/classify.md).
 
-**Review findings:** verify each against the source, fix real bugs, and for the rest write a one-line reply with the reason.
+**Review findings:** on every wake, read the reviews, comments and unresolved threads themselves; a COMMENTED review changes neither the checks nor `reviewDecision`.
+Verify each against the source, fix real bugs, and for the rest write a one-line reply with the reason.
 A human reviewer's change request is a design conversation: hand it to the PR's author session, or to the user.
 Keep the PR at the size its goal needs; review loops grow PRs one cheap fix at a time.
 
